@@ -12,9 +12,14 @@ func _ready():
 	connect("sleeping_state_changed", _on_sleeping_state_changed)
 	connect("mouse_entered", _on_mouse_entered)
 	connect("mouse_exited", _on_mouse_exited)
+	connect("body_entered", _on_body_entered)
 
 func _on_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+func _on_body_entered(body):
+	if body.is_in_group("Item"):
+		$ContactAudioPlayer.play()
 
 func _on_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -69,9 +74,12 @@ func set_in_box(in_box: bool):
 		current_tween = create_tween()
 		current_tween.tween_property($Sprite2D, "modulate", Color.GREEN, 0.05)
 		current_tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.5)
+		get_node("/root/Game/SuccessAudioPlayer").play()
 	else:
 		if current_tween:
 			current_tween.kill()
 		current_tween = create_tween()
 		current_tween.tween_property($Sprite2D, "modulate", Color.RED, 0.05)
 		current_tween.tween_property($Sprite2D, "modulate", Color.WHITE, 0.5)
+		get_node("/root/Game/FailAudioPlayer").play()
+	get_node("/root/Game").check_if_winning()

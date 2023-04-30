@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyuhkhj7bbpnj"]
+[gd_scene load_steps=24 format=3 uid="uid://cyuhkhj7bbpnj"]
 
 [ext_resource type="Texture2D" uid="uid://0sexijayxyt7" path="res://Assets/Images/Hammer.png" id="1_4omna"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_628ed"]
@@ -9,18 +9,34 @@
 [ext_resource type="Script" path="res://Scripts/Star.gd" id="4_hvmf6"]
 [ext_resource type="Texture2D" uid="uid://bwlfkcio60qtd" path="res://Assets/Images/Toothbrush.png" id="5_3v024"]
 [ext_resource type="Texture2D" uid="uid://8if2v0473c4g" path="res://Assets/Images/Star.png" id="8_rbv1e"]
+[ext_resource type="AudioStream" uid="uid://davmb08evjoyq" path="res://Assets/Audio/impactMetal_light_002.ogg" id="9_w5gxm"]
+[ext_resource type="Texture2D" uid="uid://dlwmkd1hrmuag" path="res://Assets/Images/Pickaxe.png" id="10_4kg2e"]
+[ext_resource type="AudioStream" uid="uid://jg078urtpcoy" path="res://Assets/Audio/success.ogg" id="10_7ejs5"]
+[ext_resource type="AudioStream" uid="uid://c6puunelalmhv" path="res://Assets/Audio/impactWood_light_004.ogg" id="11_jkq6n"]
+[ext_resource type="AudioStream" uid="uid://ioi536yjapeu" path="res://Assets/Audio/fail.ogg" id="11_na2bf"]
+[ext_resource type="Texture2D" uid="uid://c686pnwnju5el" path="res://Assets/Images/Wallet.png" id="13_i77bx"]
+[ext_resource type="AudioStream" uid="uid://cr7gbgej8v21a" path="res://Assets/Audio/impactWood_light_002.ogg" id="14_cnqgp"]
+[ext_resource type="AudioStream" uid="uid://blxr1oonkycux" path="res://Assets/Audio/tada.ogg" id="14_tau13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k303t"]
-size = Vector2(1973, 639)
+size = Vector2(1973, 626)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp8t3"]
-size = Vector2(957.75, 309.5)
+size = Vector2(918.005, 309.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8votk"]
-size = Vector2(796, 248)
+size = Vector2(832, 260)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6ywj"]
-size = Vector2(1933, 584)
+size = Vector2(1933, 592)
+
+[sub_resource type="Gradient" id="Gradient_lk10o"]
+offsets = PackedFloat32Array(0, 0.97351)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_wiuwk"]
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_628ed")
@@ -108,7 +124,7 @@ script = ExtResource("4_hvmf6")
 
 [node name="Box" type="Sprite2D" parent="."]
 modulate = Color(0.392157, 0.392157, 0.392157, 1)
-position = Vector2(541, 331)
+position = Vector2(578, 324)
 scale = Vector2(1.35519, 1.35519)
 texture = ExtResource("2_wo8kw")
 script = ExtResource("3_o8akv")
@@ -118,44 +134,126 @@ input_pickable = false
 script = ExtResource("4_ck2du")
 
 [node name="TopCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
-position = Vector2(633.5, -90.5)
+position = Vector2(633.5, -97)
 shape = SubResource("RectangleShape2D_k303t")
 
 [node name="RightCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
-position = Vector2(1184.13, 351)
+position = Vector2(1204, 351)
 shape = SubResource("RectangleShape2D_lp8t3")
 
 [node name="LeftCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
-position = Vector2(-24, 343)
+position = Vector2(-6, 337)
 shape = SubResource("RectangleShape2D_8votk")
 
 [node name="BottomCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
-position = Vector2(622.5, 737)
+position = Vector2(622.5, 733)
 shape = SubResource("RectangleShape2D_t6ywj")
 
-[node name="Hammer" type="RigidBody2D" parent="." groups=["Item"]]
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Hammer" type="RigidBody2D" parent="Items" groups=["Item"]]
 position = Vector2(110, 494)
 input_pickable = true
-mass = 5.0
+mass = 6.0
 continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = 0.3
 script = ExtResource("2_iucts")
 
-[node name="Sprite2D" type="Sprite2D" parent="Hammer"]
+[node name="Sprite2D" type="Sprite2D" parent="Items/Hammer"]
 texture = ExtResource("1_4omna")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hammer"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Hammer"]
 polygon = PackedVector2Array(-12.5, -83, -9.3, -83, 0, -87, 0, -84.5, 33, -75.5, 33, -73.3, 35.3, -68, 37.4, -68, 52, -62.4, 52, -56, 43.5, -28, 37.5, -28, 27.5, -33, 24.7, -33, 19.7, -29, 16.5, -29, 10.5, -32, 8.8, -32, 8, -31.2, 8, -28.7, -29.5, 88, -39, 88, -39, 86.4, -51, 82.4, -51, 80.3, -52, 77.4, -52, 75, -50.4, 75, -8.3, -37.7, -20, -41.6, -20, -45.5, -22.1, -49, -24.4, -49, -39, -54.6, -39, -59.3, -30, -85.4, -30, -88, -25, -88)
 
-[node name="Toothbrush" type="RigidBody2D" parent="." groups=["Item"]]
-position = Vector2(1039, 126)
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Hammer"]
+stream = ExtResource("9_w5gxm")
+volume_db = -12.0
+
+[node name="Pickaxe" type="RigidBody2D" parent="Items" groups=["Item"]]
+position = Vector2(162, 164)
+rotation = -0.760964
 input_pickable = true
+mass = 4.0
 continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = -0.7
 script = ExtResource("2_iucts")
 
-[node name="Sprite2D" type="Sprite2D" parent="Toothbrush"]
+[node name="Sprite2D" type="Sprite2D" parent="Items/Pickaxe"]
+texture = ExtResource("10_4kg2e")
+
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Pickaxe"]
+stream = ExtResource("9_w5gxm")
+volume_db = -12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Pickaxe"]
+polygon = PackedVector2Array(16.5, -70.5, 16.5, -68.6, 21.6, -61, 23.2, -61, 60.9, -30.7, 59.9, -28, 58.3, -28, 53, -22.6, 50.5, -23.7, 50.5, -24.8, 11, -45, 9.8, -45, 5.4, -43.5, -35.1, 71, -36.4, 71, -39.4, 76, -42, 76, -51.5, 71.2, -51.5, 69.7, -55.8, 64.3, -54.8, 62, -53.9, 62, -13.1, -49.7, -15.9, -58, -56.6, -58, -60.8, -65, -59.7, -67, -57.8, -67, -6.5, -75.7, -6.5, -77, -4.3, -77)
+
+[node name="Toothbrush" type="RigidBody2D" parent="Items" groups=["Item"]]
+position = Vector2(1039, 126)
+input_pickable = true
+mass = 0.5
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = 1.0
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Items/Toothbrush"]
 texture = ExtResource("5_3v024")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Toothbrush"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Toothbrush"]
 polygon = PackedVector2Array(37, -38.7, 37, -35.6, 31, -30.6, 31, -20.5, 28.7, -20.5, 24, -16.6, 24, -5.5, 20.4, -5.5, 5.5, -14.5, 4.8, -14.5, 4, -13.7, 4, -12.1, -24.7, 52.5, -29.5, 52.5, -37, 48.8, -37, 47.3, -36.6, 45.5, -35.3, 45.5, 7, -49.8, 7, -53.5)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Toothbrush"]
+stream = ExtResource("11_jkq6n")
+
+[node name="Wallet" type="RigidBody2D" parent="Items" groups=["Item"]]
+position = Vector2(984, 538)
+input_pickable = true
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = -0.5
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Items/Wallet"]
+texture = ExtResource("13_i77bx")
+
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Wallet"]
+stream = ExtResource("14_cnqgp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Wallet"]
+polygon = PackedVector2Array(24, -38.3, 24, -37, 49, -16.8, 49, -13, 48.1, -13, 45.8, -8.9, 49, -1.4, 49, 1, 47, 1, 12, 49, 10.8, 49, 8.9, 51, 5, 51, 5, 50.2, -10, 43.3, -10, 42, -30, 28, -30, 26.7, -49, 5.8, -49, 1.4, -12, -49.6, -12, -51, -7.1, -51)
+
+[node name="SuccessAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_7ejs5")
+volume_db = -3.0
+
+[node name="FailAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_na2bf")
+volume_db = -2.0
+
+[node name="TadaAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_tau13")
+volume_db = -8.0
+
+[node name="TadaParticles" type="CPUParticles2D" parent="."]
+position = Vector2(576, 324)
+emitting = false
+amount = 512
+lifetime = 2.5
+one_shot = true
+explosiveness = 0.9
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angle_max = 360.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_lk10o")
+color_initial_ramp = SubResource("Gradient_wiuwk")
