@@ -1,0 +1,161 @@
+[gd_scene load_steps=14 format=3 uid="uid://cyuhkhj7bbpnj"]
+
+[ext_resource type="Texture2D" uid="uid://0sexijayxyt7" path="res://Assets/Images/Hammer.png" id="1_4omna"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_628ed"]
+[ext_resource type="Script" path="res://Scripts/PickableItem.gd" id="2_iucts"]
+[ext_resource type="Texture2D" uid="uid://dc81iy40qxhj6" path="res://Assets/Images/Box.png" id="2_wo8kw"]
+[ext_resource type="Script" path="res://Scripts/Box.gd" id="3_o8akv"]
+[ext_resource type="Script" path="res://Scripts/OutsideTheBox.gd" id="4_ck2du"]
+[ext_resource type="Script" path="res://Scripts/Star.gd" id="4_hvmf6"]
+[ext_resource type="Texture2D" uid="uid://bwlfkcio60qtd" path="res://Assets/Images/Toothbrush.png" id="5_3v024"]
+[ext_resource type="Texture2D" uid="uid://8if2v0473c4g" path="res://Assets/Images/Star.png" id="8_rbv1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k303t"]
+size = Vector2(1973, 639)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lp8t3"]
+size = Vector2(957.75, 309.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8votk"]
+size = Vector2(796, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6ywj"]
+size = Vector2(1933, 584)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_628ed")
+
+[node name="Stars" type="Node2D" parent="."]
+
+[node name="Star1" type="Sprite2D" parent="Stars"]
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star2" type="Sprite2D" parent="Stars"]
+position = Vector2(-58, -108)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star3" type="Sprite2D" parent="Stars"]
+position = Vector2(176, -137)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star4" type="Sprite2D" parent="Stars"]
+position = Vector2(437, -60)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star5" type="Sprite2D" parent="Stars"]
+position = Vector2(298, 61)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star6" type="Sprite2D" parent="Stars"]
+position = Vector2(489, 164)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star7" type="Sprite2D" parent="Stars"]
+position = Vector2(97, 262)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star8" type="Sprite2D" parent="Stars"]
+position = Vector2(537, 310)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star9" type="Sprite2D" parent="Stars"]
+position = Vector2(683, 126)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star10" type="Sprite2D" parent="Stars"]
+position = Vector2(790, -72)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star11" type="Sprite2D" parent="Stars"]
+position = Vector2(824, 122)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star12" type="Sprite2D" parent="Stars"]
+position = Vector2(649, 12)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star13" type="Sprite2D" parent="Stars"]
+position = Vector2(808, 311)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star14" type="Sprite2D" parent="Stars"]
+position = Vector2(313, 302)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star15" type="Sprite2D" parent="Stars"]
+position = Vector2(-74, 386)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Star16" type="Sprite2D" parent="Stars"]
+position = Vector2(-60, 167)
+texture = ExtResource("8_rbv1e")
+script = ExtResource("4_hvmf6")
+
+[node name="Box" type="Sprite2D" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+position = Vector2(541, 331)
+scale = Vector2(1.35519, 1.35519)
+texture = ExtResource("2_wo8kw")
+script = ExtResource("3_o8akv")
+
+[node name="OutsideTheBox" type="Area2D" parent="."]
+input_pickable = false
+script = ExtResource("4_ck2du")
+
+[node name="TopCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
+position = Vector2(633.5, -90.5)
+shape = SubResource("RectangleShape2D_k303t")
+
+[node name="RightCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
+position = Vector2(1184.13, 351)
+shape = SubResource("RectangleShape2D_lp8t3")
+
+[node name="LeftCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
+position = Vector2(-24, 343)
+shape = SubResource("RectangleShape2D_8votk")
+
+[node name="BottomCollisionShape2D" type="CollisionShape2D" parent="OutsideTheBox"]
+position = Vector2(622.5, 737)
+shape = SubResource("RectangleShape2D_t6ywj")
+
+[node name="Hammer" type="RigidBody2D" parent="." groups=["Item"]]
+position = Vector2(110, 494)
+input_pickable = true
+mass = 5.0
+continuous_cd = 1
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Hammer"]
+texture = ExtResource("1_4omna")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hammer"]
+polygon = PackedVector2Array(-12.5, -83, -9.3, -83, 0, -87, 0, -84.5, 33, -75.5, 33, -73.3, 35.3, -68, 37.4, -68, 52, -62.4, 52, -56, 43.5, -28, 37.5, -28, 27.5, -33, 24.7, -33, 19.7, -29, 16.5, -29, 10.5, -32, 8.8, -32, 8, -31.2, 8, -28.7, -29.5, 88, -39, 88, -39, 86.4, -51, 82.4, -51, 80.3, -52, 77.4, -52, 75, -50.4, 75, -8.3, -37.7, -20, -41.6, -20, -45.5, -22.1, -49, -24.4, -49, -39, -54.6, -39, -59.3, -30, -85.4, -30, -88, -25, -88)
+
+[node name="Toothbrush" type="RigidBody2D" parent="." groups=["Item"]]
+position = Vector2(1039, 126)
+input_pickable = true
+continuous_cd = 1
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toothbrush"]
+texture = ExtResource("5_3v024")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Toothbrush"]
+polygon = PackedVector2Array(37, -38.7, 37, -35.6, 31, -30.6, 31, -20.5, 28.7, -20.5, 24, -16.6, 24, -5.5, 20.4, -5.5, 5.5, -14.5, 4.8, -14.5, 4, -13.7, 4, -12.1, -24.7, 52.5, -29.5, 52.5, -37, 48.8, -37, 47.3, -36.6, 45.5, -35.3, 45.5, 7, -49.8, 7, -53.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
