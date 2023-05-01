@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://4wwgbbtobr7b"]
+[gd_scene load_steps=32 format=3 uid="uid://b03mn43c1i8b2"]
 
 [ext_resource type="Texture2D" uid="uid://0sexijayxyt7" path="res://Assets/Images/Hammer.png" id="1_4omna"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_628ed"]
@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dqrpdyo84gtws" path="res://Assets/Images/AudioOn.png" id="22_sigod"]
 [ext_resource type="Script" path="res://Scripts/MuteButton.gd" id="23_fgn6l"]
 [ext_resource type="Texture2D" uid="uid://4uebmketlp5s" path="res://Assets/Images/Restart.png" id="24_cwlss"]
-[ext_resource type="Script" path="res://Scenes/RestartButton.gd" id="25_0ss2l"]
+[ext_resource type="Script" path="res://Scripts/RestartButton.gd" id="25_75dwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k303t"]
 size = Vector2(1973, 626)
@@ -335,4 +335,4 @@ offset_bottom = 63.0
 grow_horizontal = 0
 focus_mode = 0
 icon = ExtResource("24_cwlss")
-script = ExtResource("25_0ss2l")
+script = ExtResource("25_75dwc")
