@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cyuhkhj7bbpnj"]
+[gd_scene load_steps=32 format=3 uid="uid://4wwgbbtobr7b"]
 
 [ext_resource type="Texture2D" uid="uid://0sexijayxyt7" path="res://Assets/Images/Hammer.png" id="1_4omna"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_628ed"]
@@ -17,6 +17,14 @@
 [ext_resource type="Texture2D" uid="uid://c686pnwnju5el" path="res://Assets/Images/Wallet.png" id="13_i77bx"]
 [ext_resource type="AudioStream" uid="uid://cr7gbgej8v21a" path="res://Assets/Audio/impactWood_light_002.ogg" id="14_cnqgp"]
 [ext_resource type="AudioStream" uid="uid://blxr1oonkycux" path="res://Assets/Audio/tada.ogg" id="14_tau13"]
+[ext_resource type="Texture2D" uid="uid://bvkh86urug78i" path="res://Assets/Images/Controller.png" id="15_yxd2u"]
+[ext_resource type="AudioStream" uid="uid://bbptdvatbbl5n" path="res://Assets/Audio/impactSoft_medium_001.ogg" id="16_sasc2"]
+[ext_resource type="Texture2D" uid="uid://fvbaqxxd3tll" path="res://Assets/Images/Key.png" id="17_vfiqy"]
+[ext_resource type="AudioStream" uid="uid://c57nfuxi5vpv0" path="res://Assets/Audio/impactMetal_medium_004.ogg" id="18_sjqrt"]
+[ext_resource type="Texture2D" uid="uid://dqrpdyo84gtws" path="res://Assets/Images/AudioOn.png" id="22_sigod"]
+[ext_resource type="Script" path="res://Scripts/MuteButton.gd" id="23_fgn6l"]
+[ext_resource type="Texture2D" uid="uid://4uebmketlp5s" path="res://Assets/Images/Restart.png" id="24_cwlss"]
+[ext_resource type="Script" path="res://Scenes/RestartButton.gd" id="25_0ss2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k303t"]
 size = Vector2(1973, 626)
@@ -152,7 +160,7 @@ shape = SubResource("RectangleShape2D_t6ywj")
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Hammer" type="RigidBody2D" parent="Items" groups=["Item"]]
-position = Vector2(110, 494)
+position = Vector2(118, 456)
 input_pickable = true
 mass = 6.0
 continuous_cd = 1
@@ -164,12 +172,12 @@ script = ExtResource("2_iucts")
 [node name="Sprite2D" type="Sprite2D" parent="Items/Hammer"]
 texture = ExtResource("1_4omna")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Hammer"]
-polygon = PackedVector2Array(-12.5, -83, -9.3, -83, 0, -87, 0, -84.5, 33, -75.5, 33, -73.3, 35.3, -68, 37.4, -68, 52, -62.4, 52, -56, 43.5, -28, 37.5, -28, 27.5, -33, 24.7, -33, 19.7, -29, 16.5, -29, 10.5, -32, 8.8, -32, 8, -31.2, 8, -28.7, -29.5, 88, -39, 88, -39, 86.4, -51, 82.4, -51, 80.3, -52, 77.4, -52, 75, -50.4, 75, -8.3, -37.7, -20, -41.6, -20, -45.5, -22.1, -49, -24.4, -49, -39, -54.6, -39, -59.3, -30, -85.4, -30, -88, -25, -88)
-
 [node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Hammer"]
 stream = ExtResource("9_w5gxm")
 volume_db = -12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Hammer"]
+polygon = PackedVector2Array(-12.5, -83, -9.3, -83, 0, -87, 0, -84.5, 33, -75.5, 33, -73.3, 35.3, -68, 37.4, -68, 52, -62.4, 52, -56, 43.5, -28, 37.5, -28, 27.5, -33, 24.7, -33, 19.7, -29, 16.5, -29, 10.5, -32, 8.8, -32, 8, -31.2, 8, -28.7, -29.5, 88, -39, 88, -39, 86.4, -51, 82.4, -51, 80.3, -52, 77.4, -52, 75, -50.4, 75, -8.3, -37.7, -20, -41.6, -20, -45.5, -22.1, -49, -24.4, -49, -39, -54.6, -39, -59.3, -30, -85.4, -30, -88, -25, -88)
 
 [node name="Pickaxe" type="RigidBody2D" parent="Items" groups=["Item"]]
 position = Vector2(162, 164)
@@ -210,6 +218,7 @@ polygon = PackedVector2Array(37, -38.7, 37, -35.6, 31, -30.6, 31, -20.5, 28.7, -
 
 [node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Toothbrush"]
 stream = ExtResource("11_jkq6n")
+volume_db = -3.0
 
 [node name="Wallet" type="RigidBody2D" parent="Items" groups=["Item"]]
 position = Vector2(984, 538)
@@ -225,9 +234,51 @@ texture = ExtResource("13_i77bx")
 
 [node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Wallet"]
 stream = ExtResource("14_cnqgp")
+volume_db = -3.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Wallet"]
 polygon = PackedVector2Array(24, -38.3, 24, -37, 49, -16.8, 49, -13, 48.1, -13, 45.8, -8.9, 49, -1.4, 49, 1, 47, 1, 12, 49, 10.8, 49, 8.9, 51, 5, 51, 5, 50.2, -10, 43.3, -10, 42, -30, 28, -30, 26.7, -49, 5.8, -49, 1.4, -12, -49.6, -12, -51, -7.1, -51)
+
+[node name="Controller" type="RigidBody2D" parent="Items" groups=["Item"]]
+position = Vector2(1013, 350)
+rotation = -0.760964
+input_pickable = true
+mass = 2.0
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = 0.3
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Items/Controller"]
+texture = ExtResource("15_yxd2u")
+
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Controller"]
+stream = ExtResource("16_sasc2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Controller"]
+polygon = PackedVector2Array(-17, -27.7, -11.8, -22.5, -7.1, -22.5, 12.7, -23.4, 20.8, -31.5, 24.2, -31.5, 39, -29, 39, -26.6, 48, -16.7, 48, 0.5, 49, 10.9, 49, 24.5, 45.4, 24.5, 28, 30.8, 28, 26.7, 14.8, 13.5, 10.1, 13.5, -13.7, 14.4, -32.8, 31.5, -40.1, 31.5, -49, 27.9, -49, 14.4, -44.7, -26.5, -41.7, -26.5, -34, -30.3, -34, -31.4, -28.7, -31.5, -25, -28.5, -18.8, -31.5, -17, -31.5)
+
+[node name="Key" type="RigidBody2D" parent="Items" groups=["Item"]]
+position = Vector2(298, 569)
+rotation = -3.6809
+input_pickable = true
+mass = 0.5
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+angular_velocity = 1.2
+script = ExtResource("2_iucts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Items/Key"]
+texture = ExtResource("17_vfiqy")
+
+[node name="ContactAudioPlayer" type="AudioStreamPlayer2D" parent="Items/Key"]
+stream = ExtResource("18_sjqrt")
+volume_db = -12.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Items/Key"]
+polygon = PackedVector2Array(-2.5, -31.3, -2.5, -29.7, 3.5, -26.7, 3.5, -24, 7.5, -16, 7.5, -10.1, 6.1, -6.7, 31.5, 18.7, 31.5, 32.5, 16.1, 32.5, 12.1, 22.5, 4.5, 22.5, 4.5, 17, 2.2, 12.5, -0.200001, 12.5, -5.5, 14.3, -5.5, 11.2, -9.4, 6.5, -16.1, 6.5, -28.5, -1.4, -28.5, -4, -31.5, -10, -31.5, -15.8, -29, -24.5, -27.6, -24.5, -24.6, -29.5, -21.8, -29.5, -17.5, -30.9, -17.5, -32.5, -15.4, -32.5)
 
 [node name="SuccessAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_7ejs5")
@@ -257,3 +308,31 @@ scale_amount_min = 4.0
 scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_lk10o")
 color_initial_ramp = SubResource("Gradient_wiuwk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MuteButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_top = 5.0
+offset_right = -4.0
+offset_bottom = 63.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("22_sigod")
+script = ExtResource("23_fgn6l")
+
+[node name="RestartButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.0
+offset_top = 5.0
+offset_right = -66.0
+offset_bottom = 63.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("24_cwlss")
+script = ExtResource("25_0ss2l")

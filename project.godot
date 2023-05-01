@@ -10,14 +10,18 @@ config_version=5
 
 [application]
 
-config/name="SpacePacking"
+config/name="Absurd Packing in Outer Space"
 run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://Assets/icon.svg"
+config/icon="res://Assets/Images/Suitcase.png"
 
 [display]
 
 window/stretch/mode="viewport"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [physics]
 
